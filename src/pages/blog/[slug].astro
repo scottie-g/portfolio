@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({ params: { slug: post.id } }));
+}
+
+const { slug } = Astro.params;
+const posts = await getCollection('blog');
+const post = posts.find(p => p.id === slug);
+const { Content } = await render(post!);
+---
+
+<Layout title={post!.data.title} description={post!.data.description}>
+  <article>
+    <header>
+      <p class="date">
+        {post!.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </p>
+      <h1>{post!.data.title}</h1>
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  article {
+    max-width: 640px;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  .date {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .content {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #333;
+  }
+
+  .content :global(h2) {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    letter-spacing: -0.01em;
+    color: #111;
+  }
+
+  .content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .content :global(a) {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .content :global(li) {
+    margin-bottom: 0.25rem;
+  }
+</style>

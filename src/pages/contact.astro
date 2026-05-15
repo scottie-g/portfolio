@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact">
+  <h1>Contact</h1>
+  <p class="intro">Want to work together or just say hello? Reach out.</p>
+
+  <div class="contact-links">
+    <a href="mailto:scott@okaycrowd.com" class="contact-item">
+      <span class="label">Email</span>
+      <span class="value">scott@okaycrowd.com</span>
+    </a>
+    <a href="https://linkedin.com/in/scottgrant" class="contact-item">
+      <span class="label">LinkedIn</span>
+      <span class="value">linkedin.com/in/scottgrant</span>
+    </a>
+  </div>
+</Layout>
+
+<style>
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .intro {
+    color: #666;
+    margin-bottom: 3rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    transition: opacity 0.15s;
+  }
+
+  .contact-item:first-child {
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .contact-item:hover .value {
+    color: #111;
+  }
+
+  .label {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+  }
+
+  .value {
+    font-size: 0.95rem;
+    color: #555;
+    transition: color 0.15s;
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home">
+  <section class="hero">
+    <h1>Scott Grant</h1>
+    <p class="tagline">Product Marketing Manager</p>
+    <p class="bio">
+      I help companies bring products to market with clarity — sharp positioning,
+      messaging that resonates, and go-to-market strategy that drives growth.
+    </p>
+    <div class="cta">
+      <a href="/portfolio" class="btn-primary">View my work</a>
+      <a href="/contact" class="btn-secondary">Get in touch</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-top: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .tagline {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+
+  .bio {
+    font-size: 1.05rem;
+    color: #444;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: #111;
+    color: #fff;
+    padding: 0.65rem 1.4rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: #333;
+  }
+
+  .btn-secondary {
+    color: #555;
+    padding: 0.65rem 1.4rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 1px solid #ddd;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .btn-secondary:hover {
+    border-color: #999;
+    color: #111;
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Writing">
+  <h1>Writing</h1>
+  <p class="intro">Thoughts on product marketing, positioning, and go-to-market strategy.</p>
+
+  <ul class="post-list">
+    {posts.map(post => (
+      <li>
+        <a href={`/blog/${post.id}`}>
+          <span class="post-title">{post.data.title}</span>
+          <span class="post-date">
+            {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </span>
+          <span class="post-desc">{post.data.description}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Layout>
+
+<style>
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .intro {
+    color: #666;
+    margin-bottom: 3rem;
+  }
+
+  .post-list {
+    list-style: none;
+  }
+
+  .post-list li a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 0.25rem 1rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .post-list li:first-child a {
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .post-list li a:hover .post-title {
+    opacity: 0.7;
+  }
+
+  .post-title {
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: #111;
+    grid-column: 1;
+    grid-row: 1;
+    transition: opacity 0.15s;
+  }
+
+  .post-date {
+    font-size: 0.82rem;
+    color: #aaa;
+    grid-column: 2;
+    grid-row: 1;
+    white-space: nowrap;
+    padding-top: 0.2rem;
+  }
+
+  .post-desc {
+    font-size: 0.9rem;
+    color: #666;
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+</style>
